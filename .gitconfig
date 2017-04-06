@@ -1,0 +1,10 @@
+[user]
+	email = thfjrmof@googlemail.com
+	name = tvnc
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+	quotepath = false
+	editor = vim -c \"set fenc=utf-8\"
