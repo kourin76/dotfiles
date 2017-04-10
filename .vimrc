@@ -1,11 +1,17 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+"--------------------
+" charactor
+"--------------------
 set fileencoding=utf-8
 set fileencodings=ucs,utf-8,euc-jp,cp932
 set fileformats=unix,dos,mac
 set ambiwidth=double
 
+"--------------------
+" indent
+"--------------------
 set expandtab
 set tabstop=2
 set softtabstop=2
@@ -13,13 +19,20 @@ set autoindent
 set smartindent
 set shiftwidth=2
 
-set incsearch
+"--------------------
+" search
+"--------------------
+set incsearch  " enable incremental search
 set ignorecase
-set smartcase
-set hlsearch
+set smartcase  " become case sensitive if pattern includes upper case
+set hlsearch   " highlight search result
+
+" toggle highlight by <ESC><ESC>
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 
+"--------------------
 " cursor
+"--------------------
 set whichwrap=b,s,h,l,<,>,[,],~
 set number
 set cursorline
@@ -34,7 +47,9 @@ set showmatch
 set wildmenu
 set history=5000
 
-"dein Scripts-----------------------------
+"--------------------
+"dein scripts
+"--------------------
 if &compatible
   set nocompatible               " Be iMproved
 endif
@@ -76,8 +91,6 @@ if dein#check_install()
   call dein#install()
 endif
 
-"End dein Scripts-------------------------
-
 " molokai
 colorscheme molokai
 set t_Co=256
@@ -90,29 +103,29 @@ set showcmd
 set ruler
 
 " vim-fugitive
-  set statusline=%<     " 行が長すぎるときに切り詰める位置
-  set statusline+=[%n]  " バッファ番号
-  set statusline+=%m    " %m 修正フラグ
-  set statusline+=%r    " %r 読み込み専用フラグ
-  set statusline+=%h    " %h ヘルプバッファフラグ
-  set statusline+=%w    " %w プレビューウィンドウフラグ
-  set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " fencとffを表示
-  set statusline+=%y    " バッファ内のファイルのタイプ
-  set statusline+=\     " 空白スペース
+  set statusline=%<     " wrap line position
+  set statusline+=[%n]  " buffer number
+  set statusline+=%m    " edit flag
+  set statusline+=%r    " read only flag
+  set statusline+=%h    " help buffer flag
+  set statusline+=%w    " preview window flag
+  set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " show fenc and ff
+  set statusline+=%y    " file type in buffer
+  set statusline+=\     " whitespace
 if winwidth(0) >= 130
-  set statusline+=%F    " バッファ内のファイルのフルパス
+  set statusline+=%F    " full file path in buffer
 else
-  set statusline+=%t    " ファイル名のみ
+  set statusline+=%t    " file name in buffer
 endif
-  set statusline+=%=    "左寄せ項目と右寄せ項目の区切り
-  set statusline+=%{fugitive#statusline()}  " Gitのブランチ名を表示
-  set statusline+=\ \   " 空白スペース2個
-  set statusline+=%1l   " 何行目にカーソルがあるか
+  set statusline+=%=    "separator between left justified and right justified
+  set statusline+=%{fugitive#statusline()}  " git branch name
+  set statusline+=\ \   " two whitespaces
+  set statusline+=%1l   " cursor position (line)
   set statusline+=/
-  set statusline+=%L    " バッファ内の総行数
+  set statusline+=%L    " lines in buffer
   set statusline+=,
-  set statusline+=%c    " 何列目にカーソルがあるか
-  set statusline+=%V    " 画面上の何列目にカーソルがあるか
-  set statusline+=\ \   " 空白スペース2個
-  set statusline+=%P    " ファイル内の何％の位置にあるか
+  set statusline+=%c    " cursor position (column)
+  set statusline+=%V    " cursor position (column) on screen
+  set statusline+=\ \   " two whitespaces
+  set statusline+=%P    " relative position in buffer
 
