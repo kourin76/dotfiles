@@ -7,19 +7,21 @@ if ! [ -e "$DEIN_DIR" ]; then
   sh ./installer.sh "$DEIN_DIR"
 fi
 
-for dotfile in .?*
-do
-  if [ $dotfile = '..' ] || [ $dotfile = '.git' ]; then
-    continue
-  fi
-  #echo $dotfile
-  if [ -L ~/$dotfile ]; then
-    echo Symbolic link ~/$dotfile is already created
-  elif [ -f ~/${dotfile}_ ]; then
-    echo Backup for ~/${dotfile}_ is already created
-  else
-    echo Create backup and symbolic link for ~/${dotfile}
-    mv ~/$dotfile ~/${dotfile}_
-    ln -Fis ${PWD}/$dotfile ~
-  fi
+for dotfile in .?*; do
+  case $dotfile in
+    ..)
+      continue;;
+    .git)
+      continue;;
+    *)
+      if [ -L ~/$dotfile ]; then
+        echo ~/$dotfile is symbolic link.
+      else
+        if [ -f ~/$dotfile ]; then
+          echo ~/$dotfile  is found, create backup.
+          mv ~/$dotfileg ~/dotfile + '_'
+        fi
+        ln -Fis "$PWD/$dotfile" ~
+     fi
+  esac
 done
