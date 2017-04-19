@@ -1,3 +1,3 @@
-set runtimepath+=.vim/
+set runtimepath+=~/dotfiles/.vim/
 runtime! usr/*.vim
 

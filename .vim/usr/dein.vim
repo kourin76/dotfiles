@@ -1,50 +1,38 @@
 "--------------------
 "dein scripts
 "--------------------
-if &compatible
-  set nocompatible               " Be iMproved
+
+let s:dein_dir = expand('~/dotfiles/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" Fetch dein.vim from Github if the plugin is not installed.
+if &runtimepath !~# 'dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-" Required:
-set runtimepath+=~/.vim/bundle/dein/repos/github.com/Shougo/dein.vim
+if dein#load_state('~/dotfiles/.vim/bundle/dein')
+  call dein#begin('~/dotfiles/.vim/bundle/dein')
 
-" Required:
-if dein#load_state('~/.vim/bundle/dein')
-  call dein#begin('~/.vim/bundle/dein')
+  let g:rc_dir    = expand('~/dotfiles/.vim/usr')
+  let s:toml      = g:rc_dir . '/dein.toml'
+"  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
-  " Let dein manage dein
-  " Required:
-  call dein#add('~/.vim/bundle/dein/repos/github.com/Shougo/dein.vim')
+  call dein#load_toml(s:toml,      {'lazy' : 0})
+"  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-  " Add or remove your plugins here:
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('tomasr/molokai')
-"  call dein#add('itchyny/lightline.vim')
-  call dein#add('bronson/vim-trailing-whitespace')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('Shougo/neocomplete.vim')
-  call dein#add('Shougo/vimproc.vim')
-  call dein#add('justmao945/vim-clang')
-  call dein#add('Shougo/neoinclude.vim')
-
-  " You can specify revision/branch/tag.
-  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
-  " Required:
   call dein#end()
   call dein#save_state()
 endif
-
-" Required:
-filetype plugin indent on
-syntax enable
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
+
+filetype plugin indent on
 
 " molokai
 colorscheme molokai
