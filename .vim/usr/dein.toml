@@ -42,6 +42,3 @@ repo = 'tpope/vim-fugitive'
 repo = 'Shougo/vimshell'
 rev = '3787e5'
 
-[[plugins]]
-repo = 'Rip-Rip/clang_complete'
-
