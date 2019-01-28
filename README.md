@@ -1,4 +1,4 @@
-git clone https://github.com/tvnc/dotfiles.git .
+git clone https://github.com/kourin76/dotfiles.git .
 
 sh ./deploy.sh
 
