@@ -1,12 +1,13 @@
 [user]
 	email = thfjrmof@googlemail.com
-	name = tvnc
-[color]
-	diff = auto
-	status = auto
-	branch = auto
+	name = kourin76
 [core]
 	quotepath = false
-	editor = vim -c \"set fenc=utf-8\"
+	editor = code --wait
+	autocrlf = false
 [alias]
 	mylog = log --graph --date=short --pretty=\"format:%C(yellow)%h %C(cyan)%ad %C(green)%an%Creset%x09%s %C(red)%d%Creset\"
+	st = status
+	co = commit
+	br = branch
+	ch = checkout
